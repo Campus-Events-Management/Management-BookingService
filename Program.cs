@@ -118,8 +118,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-// Set the port to 5003 as specified in the README
-app.Urls.Add("http://localhost:5003");
+// Set the port to 5003 and listen on all interfaces (not just localhost)
+app.Urls.Add("http://*:5003");
 
 // Important: UseCors must be before UseAuthentication
 app.UseCors("AllowFrontend");
