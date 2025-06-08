@@ -73,15 +73,15 @@ builder.Services.AddAuthorization(options =>
     options.AddPolicy("AdminOnly", policy => policy.RequireClaim("role", "admin"));
 });
 
-// Add CORS
+// Add CORS - Allow all origins
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowFrontend", policy =>
     {
-        policy.WithOrigins(builder.Configuration["AllowedOrigins"].Split(','))
+        policy.AllowAnyOrigin()
             .AllowAnyMethod()
-            .AllowAnyHeader()
-            .AllowCredentials();
+            .AllowAnyHeader();
+        // Note: AllowCredentials cannot be used with AllowAnyOrigin
     });
 });
 
